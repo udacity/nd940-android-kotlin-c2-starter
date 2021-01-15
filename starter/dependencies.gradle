@@ -28,7 +28,7 @@ ext.versions = [
 
 ext.libs = [
         kotlin                  : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$versions.kotlin",
-        appCompat               : "ndroidx.appcompat:appcompat:$versions.appCompat",
+        appCompat               : "androidx.appcompat:appcompat:$versions.appCompat",
         coreKtx                 : "androidx.core:core-ktx:$versions.coreKtx",
         constraintLayout        : "androidx.constraintlayout:constraintlayout:$versions.constraintLayout",
         viewModelKtx            : "androidx.lifecycle:lifecycle-viewmodel-ktx:$versions.viewModelKtx",
@@ -40,7 +40,7 @@ ext.libs = [
         moshiKotlin             : "com.squareup.moshi:moshi-kotlin:$versions.moshiKotlin",
         retrofit                : "com.squareup.retrofit2:retrofit:$versions.retrofit",
         retrofitConverterMoshi  : "com.squareup.retrofit2:converter-moshi:$versions.retrofitConverterMoshi",
-        retrofitConverterScalars: "com.squareup.retrofit2:converter-scalars:$versions.retrofinConverterScalars",
+        retrofitConverterScalars: "com.squareup.retrofit2:converter-scalars:$versions.retrofitConverterScalars",
         coroutinesCore          : "org.jetbrains.kotlinx:kotlinx-coroutines-core:$versions.coroutinesCore",
         coroutinesAndroid       : "org.jetbrains.kotlinx:kotlinx-coroutines-android:$versions.coroutinesAndroid",
         coroutinesAdapter       : "com.jakewharton.retrofit:retrofit2-kotlin-coroutines-adapter:$versions.coroutinesAdapter",

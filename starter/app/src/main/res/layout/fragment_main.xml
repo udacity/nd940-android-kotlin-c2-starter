@@ -5,7 +5,7 @@
     <data>
         <variable
             name="viewModel"
-            type="com.udacity.asteroidradar.main.MainViewModel" />
+            type="com.udacity.asteroidradar.ui.main.MainViewModel" />
 
     </data>
 
