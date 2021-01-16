@@ -1,11 +1,12 @@
-package com.udacity.asteroidradar.database
+package com.udacity.asteroidradar.database.model
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.udacity.asteroidradar.data.Asteroid
 
 @Entity(tableName = "asteroid_table")
-data class Asteroid(
+data class DatabaseAsteroid constructor(
     @PrimaryKey(autoGenerate = false)
     var id: Long = 0L,
 
@@ -30,3 +31,16 @@ data class Asteroid(
     @ColumnInfo(name = "is_potentially_hazardous")
     var isPotentiallyHazardous: Boolean = false
 )
+
+fun List<DatabaseAsteroid>.asDomainModel(): List<Asteroid> = map {
+    Asteroid(
+        id = it.id,
+        codename = it.codeName,
+        closeApproachDate = it.closeApproachDate,
+        absoluteMagnitude = it.absoluteMagnitude,
+        estimatedDiameter = it.estimatedDiameter,
+        relativeVelocity = it.relativeVelocity,
+        distanceFromEarth = it.distanceFromEarth,
+        isPotentiallyHazardous = it.isPotentiallyHazardous
+    )
+}

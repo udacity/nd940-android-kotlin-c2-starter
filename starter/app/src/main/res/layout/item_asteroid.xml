@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+            name="asteroid"
+            type="com.udacity.asteroidradar.data.Asteroid" />
+
+        <variable
+            name="onItemClick"
+            type="com.udacity.asteroidradar.ui.main.OnAsteroidItemClick" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:onClick="@{() -> onItemClick.onClick(asteroid)}">
+
+        <!-- TODO Complete layout -->
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -1,9 +1,20 @@
 package com.udacity.asteroidradar.util
 
+import android.view.View
 import android.widget.ImageView
+import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import com.udacity.asteroidradar.R
+
+@BindingAdapter("loading_status")
+fun bindStatus(progressBar: ProgressBar, loadingStatus: LoadingStatus?) {
+    progressBar.visibility = when (loadingStatus) {
+        LoadingStatus.LOADING -> View.VISIBLE
+        LoadingStatus.DONE -> View.GONE
+        else -> View.GONE
+    }
+}
 
 @BindingAdapter("statusIcon")
 fun bindAsteroidStatusImage(imageView: ImageView, isHazardous: Boolean) {
