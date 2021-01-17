@@ -1,11 +1,18 @@
 package com.udacity.asteroidradar.ui.main
 
 import android.os.Bundle
-import android.view.*
+import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
+import android.view.View
+import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.udacity.asteroidradar.R
 import com.udacity.asteroidradar.databinding.FragmentMainBinding
+import com.udacity.asteroidradar.ui.main.asteroidlist.AsteroidAdapter
+import com.udacity.asteroidradar.ui.main.asteroidlist.OnAsteroidItemClick
 
 class MainFragment : Fragment() {
 
@@ -14,18 +21,34 @@ class MainFragment : Fragment() {
         ViewModelProvider(this, factory).get(MainViewModel::class.java)
     }
 
+    private var viewModelAdapter: AsteroidAdapter? = null
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         val binding = FragmentMainBinding.inflate(inflater)
         binding.lifecycleOwner = this
-
         binding.viewModel = viewModel
 
         setHasOptionsMenu(true)
 
+        viewModelAdapter = AsteroidAdapter(OnAsteroidItemClick {
+            // TODO Navigate to DetailFragment
+        })
+
+        binding.rvAsteroids.adapter = viewModelAdapter
+
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        viewModel.asteroids.observe(viewLifecycleOwner) { asteroids ->
+            viewModel.loadingStatusDone()
+            asteroids?.let { viewModelAdapter?.asteroids = it }
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {

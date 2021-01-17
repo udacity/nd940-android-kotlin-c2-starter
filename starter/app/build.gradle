@@ -3,7 +3,7 @@ plugins {
     id 'kotlin-android'
     id 'kotlin-kapt'
     id 'androidx.navigation.safeargs'
-    id 'kotlin-android-extensions'
+    id 'kotlin-parcelize'
 }
 apply from: "../dependencies.gradle"
 
@@ -17,6 +17,8 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        buildConfigField "String", "API_KEY", "\"d6cEVjUoLX8EiUuJkqDDJJyUUyY8W5ejNgRePERq\""
     }
     buildTypes {
         release {
@@ -56,6 +58,7 @@ dependencies {
     implementation libs.retrofit
     implementation libs.retrofitConverterMoshi
     implementation libs.retrofitConverterScalars
+    implementation libs.retrofitConverterGson
 
     implementation libs.coroutinesCore
     implementation libs.coroutinesAndroid
@@ -66,6 +69,7 @@ dependencies {
     implementation libs.picasso
 
     implementation libs.room
+    implementation libs.roomKtx
     kapt libs.roomCompiler
 
     implementation libs.workRuntimeKtx

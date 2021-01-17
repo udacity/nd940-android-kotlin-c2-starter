@@ -1,45 +1,50 @@
 package com.udacity.asteroidradar.api
 
+import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import com.udacity.asteroidradar.BuildConfig
-import com.udacity.asteroidradar.data.Asteroid
 import com.udacity.asteroidradar.data.PictureOfDay
 import com.udacity.asteroidradar.util.Constants
-import kotlinx.coroutines.Deferred
+import okhttp3.OkHttpClient
+import org.json.JSONObject
+import retrofit2.Response
 import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.converter.moshi.MoshiConverterFactory
+import retrofit2.converter.scalars.ScalarsConverterFactory
 import retrofit2.http.GET
 import retrofit2.http.Query
 
-private val moshi = Moshi.Builder()
-    .add(KotlinJsonAdapterFactory())
-    .build()
-
-private val retrofit = Retrofit.Builder()
-    .addConverterFactory(MoshiConverterFactory.create(moshi))
-    .baseUrl(Constants.BASE_URL)
-    .build()
 
 interface NasaApiService {
 
     @GET("planetary/apod")
-    fun getPictureOfDay(
+    suspend fun getPictureOfDay(
         @Query("api_key") apiKey: String = BuildConfig.API_KEY
-    ) : PictureOfDay
+    ): PictureOfDay
 
     @GET("neo/rest/v1/feed")
-    fun getAsteroids(
-        @Query("start_date")
-        startDate: String = getNextSevenDaysFormattedDates().first(),
-        @Query("end_date")
-        endDate: String = getNextSevenDaysFormattedDates().last(),
-        @Query("api_key")
-        apiKey: String = BuildConfig.API_KEY
-    ): Deferred<List<Asteroid>>
+    suspend fun getAsteroids(
+        @Query(value = "start_date") startDate: String,
+        @Query(value = "end_date") endDate: String,
+        @Query(value = "api_key") apiKey: String
+    ): String
 }
 
 object NasaApi {
+
+    private val moshi = Moshi.Builder()
+        .add(KotlinJsonAdapterFactory())
+        .build()
+
+    private val retrofit = Retrofit.Builder()
+        .baseUrl(Constants.BASE_URL)
+        .addConverterFactory(ScalarsConverterFactory.create())
+        .addConverterFactory(MoshiConverterFactory.create(moshi))
+        .addCallAdapterFactory(CoroutineCallAdapterFactory())
+        .build()
+
     val retrofitService: NasaApiService by lazy { retrofit.create(NasaApiService::class.java) }
 }
 

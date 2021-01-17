@@ -5,7 +5,9 @@ import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
+import com.squareup.picasso.Picasso
 import com.udacity.asteroidradar.R
+import com.udacity.asteroidradar.data.PictureOfDay
 
 @BindingAdapter("loading_status")
 fun bindStatus(progressBar: ProgressBar, loadingStatus: LoadingStatus?) {
@@ -14,6 +16,16 @@ fun bindStatus(progressBar: ProgressBar, loadingStatus: LoadingStatus?) {
         LoadingStatus.DONE -> View.GONE
         else -> View.GONE
     }
+}
+
+@BindingAdapter("source_image")
+fun bindPictureOfDay(imageView: ImageView, pictureOfDay: PictureOfDay?) {
+    if (pictureOfDay == null) return
+
+    Picasso.with(imageView.context)
+        .load(pictureOfDay.url)
+        .placeholder(R.drawable.placeholder_picture_of_day)
+        .into(imageView)
 }
 
 @BindingAdapter("statusIcon")
