@@ -9,7 +9,7 @@ import com.squareup.picasso.Picasso
 import com.udacity.asteroidradar.R
 import com.udacity.asteroidradar.data.PictureOfDay
 
-@BindingAdapter("loading_status")
+@BindingAdapter("loadingStatus")
 fun bindStatus(progressBar: ProgressBar, loadingStatus: LoadingStatus?) {
     progressBar.visibility = when (loadingStatus) {
         LoadingStatus.LOADING -> View.VISIBLE
@@ -18,7 +18,7 @@ fun bindStatus(progressBar: ProgressBar, loadingStatus: LoadingStatus?) {
     }
 }
 
-@BindingAdapter("source_image")
+@BindingAdapter("sourceImage")
 fun bindPictureOfDay(imageView: ImageView, pictureOfDay: PictureOfDay?) {
     if (pictureOfDay == null) return
 

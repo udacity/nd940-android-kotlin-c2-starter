@@ -30,7 +30,7 @@
                 android:layout_height="match_parent"
                 android:adjustViewBounds="true"
                 android:scaleType="centerCrop"
-                app:source_image="@{viewModel.pictureOfDay}"
+                app:sourceImage="@{viewModel.pictureOfDay}"
                 app:srcCompat="@drawable/placeholder_picture_of_day" />
 
             <TextView
@@ -67,7 +67,7 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:loading_status="@{viewModel.loadingStatus}"
+            app:loadingStatus="@{viewModel.loadingStatus}"
             tools:visibility="visible" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
