@@ -28,6 +28,13 @@ fun bindPictureOfDay(imageView: ImageView, pictureOfDay: PictureOfDay?) {
         .into(imageView)
 }
 
+@BindingAdapter("sourceAccessibility")
+fun bindPictureOfDayAccessibility(imageView: ImageView, pictureOfDay: PictureOfDay?) {
+    if (pictureOfDay == null) return
+
+    imageView.contentDescription = pictureOfDay.title
+}
+
 @BindingAdapter("statusIcon")
 fun bindAsteroidStatusImage(imageView: ImageView, isHazardous: Boolean) {
     if (isHazardous) {
