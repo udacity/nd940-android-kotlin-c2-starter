@@ -27,7 +27,12 @@ class MainViewModel(application: Application) : ViewModel() {
     init {
         _loadingStatus.value = LoadingStatus.LOADING
         viewModelScope.launch {
-            asteroidRepository.refreshAsteroids()
+            try {
+                pictureOfDayRepository.refreshPictureOfDay()
+                asteroidRepository.refreshAsteroids()
+            } catch (ex: Throwable) {
+                ex.printStackTrace()
+            }
         }
     }
 

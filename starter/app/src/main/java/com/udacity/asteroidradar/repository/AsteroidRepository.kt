@@ -16,13 +16,14 @@ import kotlinx.coroutines.withContext
 
 class AsteroidRepository(private val radarDatabase: AsteroidRadarDatabase) {
 
-    val asteroids: LiveData<List<Asteroid>> =
-        Transformations.map(
-            radarDatabase.asteroidDao.getAllAsteroidsByApproachingDate()
-        ) {
-            it.asDomainModel()
-        }
+    val asteroids: LiveData<List<Asteroid>> = Transformations.map(
+        radarDatabase.asteroidDao.getAllAsteroidsByApproachingDate()
+    ) {
+        println("Transforming asteroids from database: ${it?.size ?: "null list"}")
+        it?.asDomainModel()
+    }
 
+    @Throws(Throwable::class)
     suspend fun refreshAsteroids() {
         withContext(Dispatchers.IO) {
             val nextSevenDays = getNextSevenDaysFormattedDates()
@@ -30,9 +31,10 @@ class AsteroidRepository(private val radarDatabase: AsteroidRadarDatabase) {
                 startDate = nextSevenDays.first(),
                 endDate = nextSevenDays.last(),
                 apiKey = BuildConfig.API_KEY
-            ).toJSONObject()
+            )?.toJSONObject()
                 ?.parseAsteroidsJsonResult()
                 ?.let {
+                    println("Inserting asteroids")
                     radarDatabase.asteroidDao.insertAll(*it.asDatabaseModel())
                 }
         }

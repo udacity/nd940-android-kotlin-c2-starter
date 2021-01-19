@@ -29,9 +29,10 @@ class DetailFragment : Fragment() {
     }
 
     private fun displayAstronomicalUnitExplanationDialog() {
-        val builder = AlertDialog.Builder(requireActivity())
+        AlertDialog.Builder(requireActivity())
             .setMessage(getString(R.string.astronomica_unit_explanation))
             .setPositiveButton(android.R.string.ok, null)
-        builder.create().show()
+            .create()
+            .show()
     }
 }
