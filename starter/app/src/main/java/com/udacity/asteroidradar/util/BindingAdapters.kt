@@ -5,9 +5,12 @@ import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
+import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 import com.udacity.asteroidradar.R
+import com.udacity.asteroidradar.data.Asteroid
 import com.udacity.asteroidradar.data.PictureOfDay
+import com.udacity.asteroidradar.ui.main.asteroidlist.AsteroidAdapter
 
 @BindingAdapter("loadingStatus")
 fun bindStatus(progressBar: ProgressBar, loadingStatus: LoadingStatus?) {
@@ -33,6 +36,15 @@ fun bindPictureOfDayAccessibility(imageView: ImageView, pictureOfDay: PictureOfD
     if (pictureOfDay == null) return
 
     imageView.contentDescription = pictureOfDay.title
+}
+
+@BindingAdapter("listData")
+fun bindRecyclerView(recyclerView: RecyclerView, data: List<Asteroid>?) {
+    data.let { asteroids ->
+        (recyclerView.adapter as AsteroidAdapter).run {
+            submitList(asteroids)
+        }
+    }
 }
 
 @BindingAdapter("statusIcon")

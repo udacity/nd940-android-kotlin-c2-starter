@@ -43,15 +43,6 @@ class MainFragment : Fragment() {
         return binding.root
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        viewModel.asteroids.observe(viewLifecycleOwner) { asteroids ->
-            viewModel.loadingStatusDone()
-            asteroids?.let { viewModelAdapter?.asteroids = it }
-        }
-    }
-
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.main_overflow_menu, menu)
         super.onCreateOptionsMenu(menu, inflater)

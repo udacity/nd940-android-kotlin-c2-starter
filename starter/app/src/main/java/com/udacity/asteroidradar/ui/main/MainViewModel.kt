@@ -28,9 +28,11 @@ class MainViewModel(application: Application) : ViewModel() {
         _loadingStatus.value = LoadingStatus.LOADING
         viewModelScope.launch {
             try {
+                _loadingStatus.value = LoadingStatus.DONE
                 pictureOfDayRepository.refreshPictureOfDay()
                 asteroidRepository.refreshAsteroids()
             } catch (ex: Throwable) {
+                _loadingStatus.value = LoadingStatus.DONE
                 ex.printStackTrace()
             }
         }
@@ -38,8 +40,4 @@ class MainViewModel(application: Application) : ViewModel() {
 
     val pictureOfDay: LiveData<PictureOfDay> = pictureOfDayRepository.pictureOfDay
     val asteroids: LiveData<List<Asteroid>> = asteroidRepository.asteroids
-
-    fun loadingStatusDone() {
-        _loadingStatus.value = LoadingStatus.DONE
-    }
 }
