@@ -29,8 +29,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:adjustViewBounds="true"
+                android:contentDescription="@string/this_is_nasa_s_picture_of_day_showing_nothing_yet"
                 android:scaleType="centerCrop"
-                app:sourceAccessibility="@{viewModel.pictureOfDay}"
+                app:pictureOfDayContent="@{viewModel.pictureOfDay}"
                 app:sourceImage="@{viewModel.pictureOfDay}"
                 app:srcCompat="@drawable/placeholder_picture_of_day" />
 
@@ -56,9 +57,9 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:listData="@{viewModel.asteroids}"
             app:layout_constraintTop_toBottomOf="@+id/fl_image_of_day"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintVertical_bias="0.0"
+            app:listData="@{viewModel.asteroids}" />
 
         <ProgressBar
             android:id="@+id/pb_loading"

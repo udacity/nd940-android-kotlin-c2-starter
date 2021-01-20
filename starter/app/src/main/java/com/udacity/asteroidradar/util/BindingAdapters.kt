@@ -31,11 +31,14 @@ fun bindPictureOfDay(imageView: ImageView, pictureOfDay: PictureOfDay?) {
         .into(imageView)
 }
 
-@BindingAdapter("sourceAccessibility")
+@BindingAdapter("pictureOfDayContent")
 fun bindPictureOfDayAccessibility(imageView: ImageView, pictureOfDay: PictureOfDay?) {
     if (pictureOfDay == null) return
 
-    imageView.contentDescription = pictureOfDay.title
+    imageView.contentDescription = imageView.context.getString(
+        R.string.nasa_picture_of_day_content_description_format,
+        pictureOfDay.title
+    )
 }
 
 @BindingAdapter("listData")
@@ -63,6 +66,13 @@ fun bindDetailsStatusImage(imageView: ImageView, isHazardous: Boolean) {
     } else {
         imageView.setImageResource(R.drawable.asteroid_safe)
     }
+}
+
+@BindingAdapter("asteroidStatusContent")
+fun bindDetailsStatusContent(imageView: ImageView, isHazardous: Boolean) {
+    imageView.contentDescription =
+        if (isHazardous) imageView.context.getString(R.string.potentially_hazardous_asteroid_image)
+        else imageView.context.getString(R.string.not_hazardous_asteroid_image)
 }
 
 @BindingAdapter("astronomicalUnitText")
