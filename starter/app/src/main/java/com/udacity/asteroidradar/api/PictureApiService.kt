@@ -6,6 +6,7 @@ import com.udacity.asteroidradar.PictureOfDay
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
+import retrofit2.converter.scalars.ScalarsConverterFactory
 import retrofit2.http.GET
 
 private const val KEY = "apod?api_key=ZYylBzfTBo7ZrIOHItyqefWq9OdE7h2lQGUk476L"
@@ -17,13 +18,14 @@ private val moshi = Moshi.Builder()
     .build()
 
 private val retrofit = Retrofit.Builder()
+    .addConverterFactory(ScalarsConverterFactory.create())
     .addConverterFactory(MoshiConverterFactory.create(moshi))
     .baseUrl(BASE_URL)
     .build()
 
 interface PictureApiService {
     @GET(KEY)
-    fun getProperties(): Call<PictureOfDay>
+    suspend fun getProperties(): String
 }
 
 object PictureApi {
