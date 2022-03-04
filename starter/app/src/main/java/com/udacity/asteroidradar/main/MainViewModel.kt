@@ -29,7 +29,7 @@ class MainViewModel : ViewModel() {
     private fun getPictureProperties() {
         viewModelScope.launch {
             try{
-                var listResult = PictureApi.retrofitService.getProperties()
+                var listResult = PictureApi.retrofitService.getProperties().toString()
                 _response.value = "Success: ${listResult} Picture properties retrieved"
             }catch (e: Exception) {
                 _response.value = "Failure: ${e.message}"
