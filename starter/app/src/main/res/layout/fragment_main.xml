@@ -35,7 +35,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="#55010613"
-                android:text="@{viewModel.response}"
+                android:text="@{viewModel.status}"
                 android:hint="Enter text here"
                 android:padding="16dp"
                 android:textColor="@android:color/white"
