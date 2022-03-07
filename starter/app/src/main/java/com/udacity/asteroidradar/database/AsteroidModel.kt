@@ -5,7 +5,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity(tableName = "asteroid_database")
-data class Asteroid(
+data class AsteroidModel(
     @PrimaryKey(autoGenerate = true) val id: Long,
     @ColumnInfo(name="codename") val codename: String?,
     @ColumnInfo(name = "close_approach_date") val closeApproachDate: String?,

@@ -10,11 +10,11 @@ import kotlin.collections.List
 @Dao
 interface AsteroidDatabaseDao {
     @Insert
-    fun insertAll(vararg asteroids: Asteroid)
+    fun insertAll(vararg asteroids: AsteroidModel)
 
     @Delete
-    fun delete(asteroid: Asteroid)
+    fun delete(asteroid: AsteroidModel)
 
     @Query("SELECT * FROM asteroid_database")
-    fun getAll(): List<Asteroid>
+    fun getAll(): List<AsteroidModel>
 }
