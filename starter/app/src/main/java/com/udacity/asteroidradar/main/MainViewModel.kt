@@ -41,7 +41,7 @@ class MainViewModel : ViewModel() {
 
                 var listResult = PictureApi.retrofitService.getProperties()
                 var urlString: String = ""
-                //_status.value = "Success: ${listResult} Picture properties retrieved"
+                _status.value = "Success: ${listResult} Picture properties retrieved"
                 val responseList: List<String> = listResult.split("url")
                 //var testString = "0123456789"
                 Log.i("The list is",responseList.toString())
