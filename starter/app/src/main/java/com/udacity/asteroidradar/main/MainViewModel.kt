@@ -54,7 +54,6 @@ class MainViewModel : ViewModel() {
                         urlString = urlString.substring(startIndex = 3)
                         urlString = urlString.substringBefore("jpg")
                         urlString = urlString + "jpg"
-                        //Log.i("inside foreach", testString.substring(startIndex = 2)+ '\n')
                         Log.i("inside foreach", urlString+ '\n')
 
                     }
