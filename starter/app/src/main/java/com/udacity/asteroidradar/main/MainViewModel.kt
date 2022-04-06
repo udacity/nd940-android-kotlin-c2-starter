@@ -6,9 +6,11 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.udacity.asteroidradar.Asteroid
 import com.udacity.asteroidradar.network.AsteroidApi
+import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.lang.Exception
 
 enum class AsteroidApiStatus { LOADING, ERROR, DONE }
 
@@ -25,6 +27,7 @@ class MainViewModel : ViewModel() {
 
     val response: LiveData<String>
         get() = _response
+
     private val _asteroids = MutableLiveData<List<Asteroid>>()
 
     val asteroids: LiveData<List<Asteroid>>
@@ -42,15 +45,14 @@ class MainViewModel : ViewModel() {
     }
 
     private fun getAsteroids() {
-        AsteroidApi.retrofitService.getAsteroids().enqueue( object: Callback<String> {
-            override fun onFailure(call: Call<String>, t: Throwable) {
-                _response.value = "Failure: " + t.message
+        viewModelScope.launch {
+            try{
+                var listResult = AsteroidApi.retrofitService.getAsteroids()
+                _response.value = "Success ${listResult.size} Asteroid Properties received"
+            } catch (e: Exception) {
+                _response.value = "Failure: ${e.message}"
             }
-
-            override fun onResponse(call: Call<String>, response: Response<String>) {
-                _response.value = response.body()
-            }
-        })
+        }
 //        viewModelScope.launch {
 //            _status.value = AsteroidApiStatus.LOADING
 //            try {
