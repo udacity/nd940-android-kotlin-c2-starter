@@ -15,3 +15,18 @@ data class Asteroid(
     @ColumnInfo(name = "distance_from_earth") val distanceFromEarth: Double,
     @ColumnInfo(name = "is_potentially_hazardous") val isPotentiallyHazardous: Boolean?
 )
+
+fun List<Asteroid>.asDomainModel(): List<Asteroid> {
+    return map {
+        Asteroid(
+            id = it.id,
+            codename = it.codename,
+            closeApproachDate = it.closeApproachDate,
+            absoluteMagnitude = it.absoluteMagnitude,
+            estimatedDiameter = it.estimatedDiameter,
+            relativeVelocity = it.relativeVelocity,
+            distanceFromEarth = it.distanceFromEarth,
+            isPotentiallyHazardous = it.isPotentiallyHazardous
+        )
+    }
+}
