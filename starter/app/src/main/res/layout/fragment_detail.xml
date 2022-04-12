@@ -8,6 +8,10 @@
         <variable
             name="asteroid"
             type="com.udacity.asteroidradar.Asteroid" />
+
+        <variable
+            name="viewModel"
+            type="com.udacity.asteroidradar.main.MainViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -17,10 +21,10 @@
 
         <ImageView
             android:id="@+id/activity_main_image_of_the_day"
+            android:contentDescription="@string/image_of_the_day"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:adjustViewBounds="true"
-            app:asteroidStatusImage="@{asteroid.potentiallyHazardous}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -91,6 +95,7 @@
 
                     <ImageView
                         android:id="@+id/help_button"
+                        android:contentDescription="@string/help"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="16dp"

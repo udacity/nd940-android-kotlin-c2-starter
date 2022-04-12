@@ -3,7 +3,7 @@ package com.udacity.asteroidradar.network
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import com.udacity.asteroidradar.Asteroid
-import retrofit2.Call
+import com.udacity.asteroidradar.PictureOfDay
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.GET
@@ -22,6 +22,10 @@ interface AsteroidApiService {
     @GET("feed?start_date=2015-09-07&end_date=2015-09-08&api_key=AuLTKnSJnJ6atbnq6Yz4bIh4mnDbclmtCJiamhvK")
     suspend fun getAsteroids():
             List<Asteroid>
+
+    @GET(img_url)
+    suspend fun getImageOfTheDay():
+            PictureOfDay
 }
 
 private val moshi = Moshi.Builder()
@@ -40,6 +44,4 @@ object AsteroidApi {
     val retrofitService : AsteroidApiService by lazy {
         retrofit.create(AsteroidApiService::class.java)
     }
-
-    val asteroids = retrofit.create(AsteroidApiService::class.java)
-    }
+ }

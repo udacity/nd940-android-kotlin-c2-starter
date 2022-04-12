@@ -28,6 +28,7 @@
 
             <ImageView
                 android:id="@+id/activity_main_image_of_the_day"
+                android:contentDescription="@string/image_of_the_day"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:adjustViewBounds="true"
@@ -51,6 +52,7 @@
             android:id="@+id/asteroid_recycler"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:clipToPadding="false"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -59,8 +61,9 @@
             app:layout_constraintTop_toBottomOf="@+id/activity_main_image_of_the_day_layout"
             app:spanCount="1"
             app:layout_constraintVertical_bias="0.0"
+            app:listData="@{viewModel.asteroids}"
             tools:itemCount="15"
-            tools:listitem="@layout/fragment_detail" />
+            tools:listitem="@layout/grid_view_item" />
 
         <ProgressBar
             android:id="@+id/status_loading_wheel"
