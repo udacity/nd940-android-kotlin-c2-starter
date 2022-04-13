@@ -16,7 +16,7 @@ import com.udacity.asteroidradar.R
 import com.udacity.asteroidradar.databinding.FragmentMainBinding
 
 class MainFragment : Fragment() {
-
+    // give the fragment access to the viewModel
     private val viewModel: MainViewModel by lazy {
         ViewModelProvider(this).get(MainViewModel::class.java)
     }
@@ -25,6 +25,7 @@ class MainFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View {
 
+        // Attach the binding object to the fragment_main layout and inflate with the DataBindingUtil inflater
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_main, container, false)
         // Allows Data Binding to Observe LiveData with the lifecycle of this Fragment
         binding.lifecycleOwner = this
@@ -58,8 +59,13 @@ class MainFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        // Call the getImageOfTheDay function defined in the viewModel
         viewModel.getImageOfTheDay()
+        // Call the getAsteroidsList function defined in the viewModel
         viewModel.getAsteroidsList()
+
+        // set an observer to see if the value of asteroidImage changes
         viewModel._asteroidImage.observe(viewLifecycleOwner){
             val imgUri = it.url.toUri().buildUpon()?.scheme("https")?.build()
             Glide.with(requireContext())
