@@ -24,6 +24,7 @@
 
             <ImageView
                 android:id="@+id/activity_main_image_of_the_day"
+                android:contentDescription="@string/image_of_the_day"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:adjustViewBounds="true"
