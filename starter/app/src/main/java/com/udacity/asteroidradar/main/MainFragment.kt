@@ -49,7 +49,7 @@ class MainFragment : Fragment() {
         // Call the getImageOfTheDay function defined in the viewModel
         viewModel.getImageOfTheDay()
         // Call the getAsteroidsList function defined in the viewModel
-        // todo        viewModel.getAsteroidsList()
+        viewModel.getAsteroidsList()
 
         // set an observer to see if the value of asteroidImage changes
         viewModel._asteroidImage.observe(viewLifecycleOwner){
