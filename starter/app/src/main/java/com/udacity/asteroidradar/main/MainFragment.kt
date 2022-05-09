@@ -8,43 +8,36 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.observe
-import androidx.navigation.fragment.findNavController
-import com.bumptech.glide.Glide
-import com.bumptech.glide.request.RequestOptions
-import com.udacity.asteroidradar.PictureOfDay
 import com.udacity.asteroidradar.R
 import com.udacity.asteroidradar.databinding.FragmentMainBinding
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
+
 
 class MainFragment : Fragment() {
-    // give the fragment access to the viewModel
+
     private val viewModel: MainViewModel by lazy {
         ViewModelProvider(this).get(MainViewModel::class.java)
     }
+
     lateinit var binding : FragmentMainBinding
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View {
+                              savedInstanceState: Bundle?): View? {
 
-        // Attach the binding object to the fragment_main layout and inflate with the DataBindingUtil inflater
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_main, container, false)
-        // Allows Data Binding to Observe LiveData with the lifecycle of this Fragment
         binding.lifecycleOwner = this
-
-        // Giving the binding access to the MainViewModel
         binding.viewModel = viewModel
-
-        // Sets the adapter of the FragmentMain RecyclerView with clickHandler lambda that
-        // tells the viewModel when our asteroid is clicked
-        binding.asteroidRecycler.adapter = AsteroidGridAdapter()
-
-        viewModel.navigateToSelectedAsteroid.observe(viewLifecycleOwner, Observer {
-            if ( null != it) {
-                this.findNavController().navigate(MainFragmentDirections.actionShowDetail(it))
-                viewModel.displayAsteroidDetailsComplete()
+        val adapter = MainAdapter()
+        binding.asteroidRecycler.adapter = adapter
+        viewModel._asteroids.observe(viewLifecycleOwner, Observer {
+            it?.let{
+                adapter.data = it
             }
         })
 
         setHasOptionsMenu(true)
+
         return binding.root
     }
 
@@ -78,5 +71,5 @@ class MainFragment : Fragment() {
                 .into(binding.activityMainImageOfTheDay)
         }
 
-        }
     }
+}

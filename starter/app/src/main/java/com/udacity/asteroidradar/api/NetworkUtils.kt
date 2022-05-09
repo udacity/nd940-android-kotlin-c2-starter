@@ -1,20 +1,11 @@
-package com.udacity.asteroidradar.network
+package com.udacity.asteroidradar.api
 
 import com.udacity.asteroidradar.Asteroid
 import com.udacity.asteroidradar.Constants
-import com.udacity.asteroidradar.PictureOfDay
 import org.json.JSONObject
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
-
-fun parseAsteroidImageJsonResult(jsonResult: JSONObject): PictureOfDay {
-    val mediaType = jsonResult.getString("media_type")
-    val title = jsonResult.getString("title")
-    val url = jsonResult.getString("url")
-    val image = PictureOfDay(mediaType, title, url)
-    return image
-}
 
 fun parseAsteroidsJsonResult(jsonResult: JSONObject): ArrayList<Asteroid> {
     val nearEarthObjectsJson = jsonResult.getJSONObject("near_earth_objects")
@@ -63,4 +54,11 @@ private fun getNextSevenDaysFormattedDates(): ArrayList<String> {
     }
 
     return formattedDateList
+}
+
+fun getDate(): String{
+    val date = Calendar.getInstance()
+    val time = date.time
+    val format = SimpleDateFormat(Constants.API_QUERY_DATE_FORMAT, Locale.getDefault())
+    return format.format(time)
 }
