@@ -14,7 +14,7 @@ interface AsteroidsDatabaseDao {
         fun insert(asteroid: DatabaseAsteroid)
 
 //        @Query("SELECT * FROM asteroids_database")
-//        fun getAsteroidsList(asteroids: ArrayList<DatabaseAsteroid>?)
+//        fun getAsteroidsFromDatabase(asteroids: ArrayList<DatabaseAsteroid>?)
 //
 //    @Query("SELECT * from asteroids_database WHERE id = :id")
 //    fun getAsteroidById(id: Long): LiveData<DatabaseAsteroid>

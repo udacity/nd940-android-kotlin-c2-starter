@@ -26,7 +26,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     val asteroidImage: LiveData<PictureOfDay>
         get() = _asteroidImage
 
-    lateinit var repository: AsteroidsRepository
+    var repository: AsteroidsRepository
 
     init {
         val asteroidDB = AsteroidsDatabase.getInstance(application).asteroidsDao()
