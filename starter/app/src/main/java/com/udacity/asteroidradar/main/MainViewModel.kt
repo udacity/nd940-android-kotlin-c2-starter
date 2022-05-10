@@ -17,7 +17,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     // Private value that tells the status of loading the asteroids
     private val _status = MutableLiveData<AsteroidApiStatus>()
 
-    var _asteroids = MutableLiveData<ArrayList<DatabaseAsteroid>>()
+    var _asteroids = MutableLiveData<List<DatabaseAsteroid>>()
 
     // Private value that keeps track of the PictureOfTheDay
     val _asteroidImage = MutableLiveData<PictureOfDay>()

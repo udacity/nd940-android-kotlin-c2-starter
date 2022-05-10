@@ -44,6 +44,6 @@ class AsteroidsRepository(private val asteroidDao: AsteroidsDatabaseDao) {
         asteroidDao.insertAll(asteroids)
     }
 
-//    suspend fun getAllAsteroids(): List<DatabaseAsteroid> = asteroidDao.getAll()
+    suspend fun getAllAsteroids(): List<DatabaseAsteroid> = asteroidDao.getAll()
 
 }
