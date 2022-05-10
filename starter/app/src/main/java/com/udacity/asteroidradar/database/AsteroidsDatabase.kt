@@ -6,7 +6,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.udacity.asteroidradar.Asteroid
 
-@Database(entities = [DatabaseAsteroid::class], version = 1, exportSchema = false)
+@Database(entities = [DatabaseAsteroid::class], version = 2, exportSchema = false)
 abstract class AsteroidsDatabase : RoomDatabase() {
 
     abstract val asteroidsDao: AsteroidsDatabaseDao
@@ -26,7 +26,8 @@ abstract class AsteroidsDatabase : RoomDatabase() {
                         context.applicationContext,
                         AsteroidsDatabase::class.java,
                         "asteroids_database"
-                    ).fallbackToDestructiveMigration()
+                    )
+                        .fallbackToDestructiveMigration()
                         // Wipes and rebuilds instead of migrating if no Migration object.
                         .build()
                         // Assign INSTANCE to the newly created database.
