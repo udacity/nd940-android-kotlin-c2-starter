@@ -29,7 +29,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     var repository: AsteroidsRepository
 
     init {
-        val asteroidDB = AsteroidsDatabase.getInstance(application).asteroidsDao()
+        val asteroidDB = AsteroidsDatabase.getInstance(application).asteroidsDao
         repository = AsteroidsRepository(asteroidDB)
     }
 
@@ -52,7 +52,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
         viewModelScope.launch {
             try {
                 repository.refreshAsteroidsList()
-//                _asteroids.value = repository.getAllAsteroids()
+                _asteroids.value = repository.getAllAsteroids()
                 _status.value = AsteroidApiStatus.DONE
             } catch (e: Exception) {
                 _status.value = AsteroidApiStatus.ERROR
