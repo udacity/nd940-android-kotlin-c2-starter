@@ -61,7 +61,4 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
             }
         }
     }
-
-    class AsteroidViewHolder(val textView: TextView): RecyclerView.ViewHolder(textView)
-
 }
