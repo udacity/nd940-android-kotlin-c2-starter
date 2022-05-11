@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+        <variable
+            name="asteriod"
+            type="com.udacity.asteroidradar.Asteroid" />
+
+        <variable
+            name="listener"
+            type="com.udacity.asteroidradar.main.MainAsteroidAdapter.AsteroidListener" />
+
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/margin_16"
+        android:onClick="@{()->listener.onClick(asteriod)}"
+        android:layout_marginBottom="@dimen/margin_16">
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/size_16"
+            android:textStyle="bold"
+            android:textColor="@android:color/white"
+            android:text="@{asteriod.codename}" />
+
+        <TextView
+            android:id="@+id/tv_figure"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_title"
+            android:textColor="@android:color/white"
+            android:text="@{asteriod.closeApproachDate}" />
+
+        <ImageView
+            android:id="@+id/image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerInParent="true"
+            statusIcon="@{asteriod.potentiallyHazardous}"/>
+    </RelativeLayout>
+</layout>
