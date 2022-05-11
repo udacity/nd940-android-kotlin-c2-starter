@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">Asteroid Radar</string>
-
     <string name="next_week_asteroids">View week asteroids</string>
     <string name="today_asteroids">View today asteroids</string>
     <string name="saved_asteroids">View saved asteroids</string>
@@ -19,4 +18,9 @@
     <string name="not_hazardous_asteroid_image">Not hazardous asteroid image</string>
     <string name="this_is_nasa_s_picture_of_day_showing_nothing_yet">This is NASA\'s picture of day, showing nothing yet</string>
     <string name="nasa_picture_of_day_content_description_format">NASA\'s picture of day: %s</string>
+    <string name="default_date">2020-02-01</string>
+    <string name="default_absolute">25.126 au</string>
+    <string name="default_estimated">0.82 km</string>
+    <string name="default_relative">11.9 km/s</string>
+    <string name="deault_distance">0.0924 au</string>
 </resources>

@@ -8,4 +8,12 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="TitleTextView" parent="TextAppearance.AppCompat.Title">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/default_text_color</item>
+    </style>
+
+    <style name="SubTitleTextView" parent="TextAppearance.AppCompat.Subhead">
+        <item name="android:textColor">@color/default_text_color</item>
+    </style>
 </resources>

@@ -21,6 +21,9 @@ interface AsteroidDao {
         endDate:String
     ): Flow<List<Asteroid>>
 
+    @Query("DELETE FROM ${Constants.ASTEROID_TABLE} WHERE closeApproachDate < :today")
+    fun deletePreviousDayAsteroids(today: String): Int
+
     @Insert(onConflict = REPLACE)
     fun insertAll(vararg asteroids: Asteroid)
 }

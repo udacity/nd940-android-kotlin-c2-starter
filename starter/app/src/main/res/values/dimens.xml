@@ -2,4 +2,8 @@
 <resources>
     <dimen name="margin_16">16dp</dimen>
     <dimen name="size_16">16sp</dimen>
+    <dimen name="padding_16">16dp</dimen>
+    <dimen name="margin_4">4dp</dimen>
+    <dimen name="height_220">220dp</dimen>
+    <dimen name="size_20">20sp</dimen>
 </resources>

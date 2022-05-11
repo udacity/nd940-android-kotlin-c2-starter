@@ -21,6 +21,12 @@ class AsteroidRepositoryImpl(private val database: AsteroidDatabase) : AsteroidR
             database.asteroidDao.insertAll(*asteroidList.asDomainModel())
         }
 
+    override suspend fun deletePreviousDayAsteroids() {
+        withContext(Dispatchers.IO) {
+            database.asteroidDao.deletePreviousDayAsteroids(getToday())
+        }
+    }
+
     suspend fun getPictureOfDay(): PictureOfDay? {
         var pictureOfDay: PictureOfDay = withContext(Dispatchers.IO) {
             Network.service.getPictureOfDay().await()

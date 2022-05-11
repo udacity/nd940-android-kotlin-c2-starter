@@ -9,4 +9,5 @@ object Constants {
     const val ASTEROID_TABLE = "Asteroid"
     const val IMAGE_MEDIA_TYPE = "image"
     const val REFRESH_ASTEROID = "REFRESH_ASTEROID"
+    const val DELETE_ASTEROIDS = "DELETE_ASTEROIDS"
 }

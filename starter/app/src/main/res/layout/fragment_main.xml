@@ -17,7 +17,7 @@
         <FrameLayout
             android:id="@+id/activity_main_image_of_the_day_layout"
             android:layout_width="match_parent"
-            android:layout_height="220dp"
+            android:layout_height="@dimen/height_220"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -28,6 +28,7 @@
                 android:layout_height="match_parent"
                 android:adjustViewBounds="true"
                 android:scaleType="centerCrop"
+                android:contentDescription="@string/this_is_nasa_s_picture_of_day_showing_nothing_yet"
                 pictureOfDay= "@{viewModel.pictureOfDay}"
                 app:srcCompat="@drawable/placeholder_picture_of_day"/>
 
@@ -35,12 +36,12 @@
                 android:id="@+id/textView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="16dp"
+                android:padding="@dimen/padding_16"
                 android:textColor="@android:color/white"
                 android:textStyle="bold"
-                android:textSize="20sp"
+                android:textSize="@dimen/size_20"
                 android:layout_gravity="bottom"
-                android:background="#55010613"
+                android:background="@color/image_color"
                 android:text="@string/image_of_the_day" />
         </FrameLayout>
 
