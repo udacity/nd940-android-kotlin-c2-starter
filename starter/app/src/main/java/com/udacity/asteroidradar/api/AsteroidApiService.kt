@@ -12,14 +12,15 @@ import retrofit2.http.GET
 private const val base_url = "https://api.nasa.gov/neo/rest/v1/"
 private const val api_key = "AuLTKnSJnJ6atbnq6Yz4bIh4mnDbclmtCJiamhvK"
 
-private const val start_date = "2015-09-07"
+private const val start_date = "2015-09-13"
 private val end_date = "2015-09-08"
 
-const val url = "${base_url}feed?start_date=2015-09-07&end_date=2015-09-08&api_key=AuLTKnSJnJ6atbnq6Yz4bIh4mnDbclmtCJiamhvK/"
+const val url = "${base_url}feed?start_date=2015-09-07&end_date=2015-09-13&api_key=AuLTKnSJnJ6atbnq6Yz4bIh4mnDbclmtCJiamhvK/"
 const val img_url = "https://api.nasa.gov/planetary/apod?api_key=${api_key}"
 
 interface AsteroidApiService {
-    @GET("feed?start_date=2022-05-10&api_key=AuLTKnSJnJ6atbnq6Yz4bIh4mnDbclmtCJiamhvK")
+    // todo  Change this to add the start date as a passed parameter
+    @GET("feed?start_date=2022-05-13&api_key=AuLTKnSJnJ6atbnq6Yz4bIh4mnDbclmtCJiamhvK")
     suspend fun getAsteroids():
             String
 

@@ -71,5 +71,7 @@ class MainFragment : Fragment() {
                 .into(binding.activityMainImageOfTheDay)
         }
 
+        // todo create an asteroid onClick listener
+
     }
 }

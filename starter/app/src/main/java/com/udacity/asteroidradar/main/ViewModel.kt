@@ -11,9 +11,11 @@ import com.udacity.asteroidradar.database.DatabaseAsteroid
 import com.udacity.asteroidradar.repository.AsteroidsRepository
 import kotlinx.coroutines.launch
 
-enum class AsteroidApiStatus { LOADING, ERROR, DONE }
 
 class MainViewModel(application: Application) : AndroidViewModel(application) {
+
+    enum class AsteroidApiStatus { LOADING, ERROR, DONE }
+
     // Private value that tells the status of loading the asteroids
     private val _status = MutableLiveData<AsteroidApiStatus>()
 
@@ -52,14 +54,11 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
         viewModelScope.launch {
             try {
                 repository.refreshAsteroidsList()
-//                _asteroids.value = repository.getAllAsteroids()
+                _asteroids.value = repository.getAllAsteroids()
                 _status.value = AsteroidApiStatus.DONE
             } catch (e: Exception) {
                 _status.value = AsteroidApiStatus.ERROR
             }
         }
     }
-
-    class AsteroidViewHolder(val textView: TextView): RecyclerView.ViewHolder(textView)
-
 }
