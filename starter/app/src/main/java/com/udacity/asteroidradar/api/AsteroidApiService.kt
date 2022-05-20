@@ -26,8 +26,6 @@ interface AsteroidApiService {
         @Query(Constants.START_DATE) todayDate:String = getDate(),
         @Query(Constants.API_KEY) apiKey:String = api_key
     ): String
-
-
 }
 
 private val moshi = Moshi.Builder()
