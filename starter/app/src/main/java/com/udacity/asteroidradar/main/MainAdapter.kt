@@ -9,7 +9,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.udacity.asteroidradar.R
 import com.udacity.asteroidradar.database.DatabaseAsteroid
 
-class MainAdapter : RecyclerView.Adapter<MainAdapter.AsteroidViewHolder>() {
+class MainAdapter( val onClickListener: OnClickListener) :
+        RecyclerView.Adapter<MainAdapter.AsteroidViewHolder>() {
     var data = listOf<DatabaseAsteroid>()
         set(value){
             field = value
@@ -31,7 +32,6 @@ class MainAdapter : RecyclerView.Adapter<MainAdapter.AsteroidViewHolder>() {
 
     class AsteroidViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
         val res = itemView.context.resources
-
         val codename: TextView = itemView.findViewById(R.id.codename)
         val closeApproachDate: TextView = itemView.findViewById(R.id.close_approach_date)
         val isHazerdous: ImageView = itemView.findViewById(R.id.is_hazerdous)
@@ -44,5 +44,8 @@ class MainAdapter : RecyclerView.Adapter<MainAdapter.AsteroidViewHolder>() {
                 false -> R.drawable.ic_status_normal
             })
         }
+    }
+    class OnClickListener(val clickListener: (asteroid:DatabaseAsteroid) -> Unit) {
+        fun onClick(asteroid:DatabaseAsteroid) = clickListener(asteroid)
     }
 }

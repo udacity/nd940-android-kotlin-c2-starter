@@ -4,6 +4,7 @@ import android.app.Application
 import android.widget.TextView
 import androidx.lifecycle.*
 import androidx.recyclerview.widget.RecyclerView
+import com.udacity.asteroidradar.Asteroid
 import com.udacity.asteroidradar.PictureOfDay
 import com.udacity.asteroidradar.api.AsteroidApi
 import com.udacity.asteroidradar.database.AsteroidsDatabase
