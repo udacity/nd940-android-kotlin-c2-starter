@@ -30,6 +30,13 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
 
     var repository: AsteroidsRepository
 
+    // Internally, we use a MutableLiveData to handle navigation to the selected asteroid
+    private val _navigateToSelectedAsteroid = MutableLiveData<DatabaseAsteroid>()
+
+    // The external immutable LiveData for the navigation asteroid
+    val navigateToSelectedAsteroid: LiveData<DatabaseAsteroid>
+        get() = _navigateToSelectedAsteroid
+
     init {
         val asteroidDB = AsteroidsDatabase.getInstance(application).asteroidsDao
         repository = AsteroidsRepository(asteroidDB)
@@ -60,5 +67,13 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
                 _status.value = AsteroidApiStatus.ERROR
             }
         }
+    }
+
+    fun displayAsteroidDetails(asteroid: DatabaseAsteroid) {
+        _navigateToSelectedAsteroid.value = asteroid
+    }
+
+    fun displayAsteroidDetailsComplete() {
+        _navigateToSelectedAsteroid.value = null
     }
 }
