@@ -14,7 +14,7 @@ interface AsteroidsDatabaseDao {
 
         @Query("SELECT * FROM asteroids_database LIMIT 10")
         suspend fun getAll(): List<DatabaseAsteroid>
-//
-//    @Query("SELECT * from asteroids_database WHERE id = :id")
-//    fun getAsteroidById(id: Long): LiveData<DatabaseAsteroid>
+
+        @Query("SELECT * from asteroids_database WHERE id = :id")
+        fun getAsteroidById(id: Long): LiveData<DatabaseAsteroid>
 }

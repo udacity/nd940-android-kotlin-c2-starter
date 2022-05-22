@@ -18,11 +18,31 @@ class DetailViewModel(asteroid: DatabaseAsteroid, app: Application) : AndroidVie
         _selectedAsteroid.value = asteroid
     }
 
-    val displayAsteroidHazardous = Transformations.map(selectedAsteroid) {
+    val displayAsteroidIsPotentiallyHazardous = Transformations.map(selectedAsteroid) {
         app.applicationContext.getString(
             when (it.isPotentiallyHazardous) {
                 true -> R.string.potentially_hazardous_asteroid_image
                 false -> R.string.not_hazardous_asteroid_image
             }, it.isPotentiallyHazardous)
+    }
+
+    val displayAsteroidCloseApproachDate = Transformations.map(selectedAsteroid) {
+        app.applicationContext.getString(it.closeApproachDate.toInt())
+    }
+
+    val displayAsteroidAbsoluteMagnitude = Transformations.map(selectedAsteroid) {
+        app.applicationContext.getString(it.absoluteMagnitude.toInt())
+    }
+
+    val displayAsteroidEstimatedDiameter = Transformations.map(selectedAsteroid) {
+        app.applicationContext.getString(it.estimatedDiameter.toInt())
+    }
+
+    val displayAsteroidRelativeVelocity = Transformations.map(selectedAsteroid) {
+        app.applicationContext.getString(it.relativeVelocity.toInt())
+    }
+
+    val displayAsteroidDistanceFromEarth = Transformations.map(selectedAsteroid) {
+        app.applicationContext.getString(it.distanceFromEarth.toInt())
     }
 }
