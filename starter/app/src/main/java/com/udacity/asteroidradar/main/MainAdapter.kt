@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.udacity.asteroidradar.R
 import com.udacity.asteroidradar.database.DatabaseAsteroid
 
-class MainAdapter( val onClickListener: OnClickListener) :
+class MainAdapter(private val onClickListener: OnClickListener) :
         RecyclerView.Adapter<MainAdapter.AsteroidViewHolder>() {
     var data = listOf<DatabaseAsteroid>()
         set(value){
@@ -21,6 +21,9 @@ class MainAdapter( val onClickListener: OnClickListener) :
 
     override fun onBindViewHolder(holder: AsteroidViewHolder, position: Int) {
         val item = data[position]
+        holder.itemView.setOnClickListener{
+            onClickListener.onClick(item)
+        }
         holder.bind(item)
     }
 

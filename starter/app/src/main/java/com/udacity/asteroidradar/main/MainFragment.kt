@@ -29,14 +29,10 @@ class MainFragment : Fragment() {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_main, container, false)
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
+        // sets the adapter for the recycler view with a click handler that
+        // tells the  viewModel when an asteroid is clicked
         binding.asteroidRecycler.adapter = MainAdapter(MainAdapter.OnClickListener {
             viewModel.displayAsteroidDetails(it)
-        })
-        viewModel.navigateToSelectedAsteroid.observe(viewLifecycleOwner, Observer {
-            if ( null != it ) {
-                this.findNavController().navigate(MainFragmentDirections.actionShowDetail(it))
-                viewModel.displayAsteroidDetailsComplete()
-            }
         })
         val adapter = MainAdapter(MainAdapter.OnClickListener {
             viewModel.displayAsteroidDetails(it)
@@ -47,9 +43,16 @@ class MainFragment : Fragment() {
                 adapter.data = it
             }
         })
+        // Observe the navigateToSelectedAsteroid LiveData & navigate when it isnt null
+        // after navigating, call displayAsteroidDetailsComplete
+        viewModel.navigateToSelectedAsteroid.observe(viewLifecycleOwner, Observer {
+            if ( null != it ) {
+                this.findNavController().navigate(MainFragmentDirections.actionShowDetail(it))
+                viewModel.displayAsteroidDetailsComplete()
+            }
+        })
 
         setHasOptionsMenu(true)
-
         return binding.root
     }
 
@@ -82,8 +85,6 @@ class MainFragment : Fragment() {
                 )
                 .into(binding.activityMainImageOfTheDay)
         }
-
-        // todo create an asteroid onClick listener
 
     }
 }

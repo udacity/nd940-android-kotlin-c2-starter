@@ -18,13 +18,14 @@ class DetailFragment : Fragment() {
         val binding = FragmentDetailBinding.inflate(inflater)
         binding.lifecycleOwner = this
         val asteroid = DetailFragmentArgs.fromBundle(requireArguments()).selectedAsteroid
+        val viewModelFactory = DetailViewModelFactory(asteroid, application)
+        binding.viewModel = ViewModelProvider(
+            this, viewModelFactory).get(DetailViewModel::class.java)
         binding.asteroid = asteroid
         binding.helpButton.setOnClickListener {
             displayAstronomicalUnitExplanationDialog()
         }
-        val viewModelFactory = DetailViewModelFactory(asteroid, application)
-        binding.viewModel = ViewModelProvider(
-            this, viewModelFactory).get(DetailViewModel::class.java)
+
         return binding.root
     }
 
