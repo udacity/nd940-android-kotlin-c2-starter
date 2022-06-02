@@ -34,10 +34,13 @@ class MainFragment : Fragment() {
         binding.asteroidRecycler.adapter = MainAdapter(MainAdapter.OnClickListener {
             viewModel.displayAsteroidDetails(it)
         })
+        // setting the clicked asteroid to the adapter variable
         val adapter = MainAdapter(MainAdapter.OnClickListener {
             viewModel.displayAsteroidDetails(it)
         })
+        // passing the adapter variable to the recyclerView
         binding.asteroidRecycler.adapter = adapter
+        // Setting an observer on the list of asteroids in the viewModel
         viewModel._asteroids.observe(viewLifecycleOwner, Observer {
             it?.let{
                 adapter.data = it

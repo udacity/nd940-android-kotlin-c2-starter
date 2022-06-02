@@ -11,6 +11,7 @@ import com.udacity.asteroidradar.database.DatabaseAsteroid
 
 class MainAdapter(private val onClickListener: OnClickListener) :
         RecyclerView.Adapter<MainAdapter.AsteroidViewHolder>() {
+
     var data = listOf<DatabaseAsteroid>()
         set(value){
             field = value

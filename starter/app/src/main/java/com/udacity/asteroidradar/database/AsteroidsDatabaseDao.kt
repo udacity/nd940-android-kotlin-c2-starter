@@ -12,7 +12,7 @@ interface AsteroidsDatabaseDao {
         @Insert(onConflict = OnConflictStrategy.REPLACE)
         fun insert(asteroid: DatabaseAsteroid)
 
-        @Query("SELECT * FROM asteroids_database LIMIT 10")
+        @Query("SELECT * FROM asteroids_database ORDER BY close_approach_date DESC")
         suspend fun getAll(): List<DatabaseAsteroid>
 
         @Query("SELECT * from asteroids_database WHERE id = :id")
