@@ -5,37 +5,34 @@ import android.widget.TextView
 import androidx.databinding.BindingAdapter
 
 @BindingAdapter("statusIcon")
-fun bindAsteroidStatusImage(imageView: ImageView, isHazardous: Boolean) {
+fun ImageView.bindAsteroidStatusImage(isHazardous: Boolean) {
     if (isHazardous) {
-        imageView.setImageResource(R.drawable.ic_status_potentially_hazardous)
+        setImageResource(R.drawable.ic_status_potentially_hazardous)
     } else {
-        imageView.setImageResource(R.drawable.ic_status_normal)
+        setImageResource(R.drawable.ic_status_normal)
     }
 }
 
 @BindingAdapter("asteroidStatusImage")
-fun bindDetailsStatusImage(imageView: ImageView, isHazardous: Boolean) {
+fun ImageView.bindDetailsStatusImage(isHazardous: Boolean) {
     if (isHazardous) {
-        imageView.setImageResource(R.drawable.asteroid_hazardous)
+        setImageResource(R.drawable.asteroid_hazardous)
     } else {
-        imageView.setImageResource(R.drawable.asteroid_safe)
+        setImageResource(R.drawable.asteroid_safe)
     }
 }
 
 @BindingAdapter("astronomicalUnitText")
-fun bindTextViewToAstronomicalUnit(textView: TextView, number: Double) {
-    val context = textView.context
-    textView.text = String.format(context.getString(R.string.astronomical_unit_format), number)
+fun TextView.bindTextViewToAstronomicalUnit(number: Double) {
+    text = String.format(context.getString(R.string.astronomical_unit_format), number)
 }
 
 @BindingAdapter("kmUnitText")
-fun bindTextViewToKmUnit(textView: TextView, number: Double) {
-    val context = textView.context
-    textView.text = String.format(context.getString(R.string.km_unit_format), number)
+fun TextView.bindTextViewToKmUnit(number: Double) {
+    text = String.format(context.getString(R.string.km_unit_format), number)
 }
 
 @BindingAdapter("velocityText")
-fun bindTextViewToDisplayVelocity(textView: TextView, number: Double) {
-    val context = textView.context
-    textView.text = String.format(context.getString(R.string.km_s_unit_format), number)
+fun TextView.bindTextViewToDisplayVelocity(number: Double) {
+    text = String.format(context.getString(R.string.km_s_unit_format), number)
 }
