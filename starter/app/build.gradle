@@ -16,6 +16,12 @@ android {
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
+        Properties properties = new Properties()
+        properties.load(project.rootProject.file("local.properties").newDataInputStream())
+
+        // use it with BuildConfig.NASA_API_KEY in my android code
+        buildConfigField "String", "NASA_API_KEY", "\"${properties.getProperty("NASA_API_KEY")}\""
+
     }
     buildTypes {
         release {
