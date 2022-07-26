@@ -34,11 +34,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="16dp"
-                android:textColor="@android:color/white"
+                android:textColor="@color/md_theme_onPrimaryContainer"
                 android:textStyle="bold"
                 android:textSize="20sp"
                 android:layout_gravity="bottom"
-                android:background="#55010613"
+                android:background="@color/md_theme_primaryContainer"
                 android:text="@string/image_of_the_day" />
         </FrameLayout>
 
