@@ -2,6 +2,9 @@ package com.udacity.asteroidradar.network
 
 import com.udacity.asteroidradar.network.model.ImageOfDayResponse
 import com.udacity.asteroidradar.network.model.NeoFeedResponse
+import com.udacity.asteroidradar.utile.Constants.API_KEY
+import com.udacity.asteroidradar.utile.Constants.END_DATE
+import com.udacity.asteroidradar.utile.Constants.START_DATE
 import retrofit2.http.GET
 import retrofit2.http.Query
 
@@ -23,7 +26,7 @@ interface AsteroidService {
         @Query(START_DATE) startDate: String, // Date Format -> YYYY-MM-DD
         @Query(END_DATE) endDate: String, // Date Format -> YYYY-MM-DD
         @Query(API_KEY) apiKey: String
-    ): NeoFeedResponse
+    ): String
 
 
     /**
@@ -33,12 +36,5 @@ interface AsteroidService {
     suspend fun nasaImageOfTheDay(
         @Query(API_KEY) apiKey: String
     ): ImageOfDayResponse
-
-    companion object {
-        private const val ASTEROID_ID = "asteroid_id"
-        private const val START_DATE = "start_date"
-        private const val END_DATE = "end_date"
-        private const val API_KEY = "api_key"
-    }
 
 }

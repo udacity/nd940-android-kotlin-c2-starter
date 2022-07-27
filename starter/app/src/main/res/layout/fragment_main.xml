@@ -6,6 +6,10 @@
     <data>
 
         <variable
+            name="bAdapter"
+            type="com.udacity.asteroidradar.ui.main.adapter.AsteroidsRecyclerViewAdapter" />
+
+        <variable
             name="bViewModel"
             type="com.udacity.asteroidradar.ui.main.MainViewModel" />
 
@@ -15,13 +19,13 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <!--app:imageOfTheDay="@{bViewModel.imageOfTheDay.url}"-->
         <ImageView
-            android:id="@+id/activity_main_image_of_the_day"
+            android:id="@+id/ivPictureOfDay"
             android:layout_width="match_parent"
             android:layout_height="200dp"
             android:adjustViewBounds="true"
             android:scaleType="centerCrop"
+            imageOfTheDay="@{bViewModel.imageOfTheDay.url}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
@@ -29,7 +33,7 @@
             tools:src="@drawable/placeholder_picture_of_day" />
 
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/tvPictureOfDay"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
@@ -42,20 +46,21 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/activity_main_image_of_the_day"
+            app:layout_constraintTop_toBottomOf="@+id/ivPictureOfDay"
             tools:text="@string/image_of_the_day" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/asteroid_recycler"
+            android:id="@+id/rvAsteroid"
             android:layout_width="0dp"
             android:layout_height="0dp"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:itemCount="3"
+            android:adapter="@{bAdapter}"
+            tools:listitem="@layout/item_asteroid"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintTop_toBottomOf="@+id/tvPictureOfDay" />
 
         <ProgressBar
             android:id="@+id/status_loading_wheel"

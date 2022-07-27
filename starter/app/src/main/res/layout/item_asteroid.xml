@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="bClickListener"
+            type="com.udacity.asteroidradar.ui.main.adapter.AsteroidClickListener" />
+
+        <variable
+            name="bAsteroid"
+            type="com.udacity.asteroidradar.domain.Asteroid" />
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
+        style="@style/Widget.Material3.CardView.Elevated"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/default_m"
+        android:layout_marginTop="@dimen/default_m"
+        android:checkable="true"
+        android:clickable="true"
+        android:focusable="true"
+        android:onClick="@{() -> bClickListener.onClick(bAsteroid)}">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/ivAsteroidImage"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:scaleType="centerCrop"
+                app:layout_constraintDimensionRatio="16:9"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:statusIcon="@{bAsteroid.potentiallyHazardous}" />
+            <!--tools:src="@drawable/asteroid_hazardous"-->
+
+            <TextView
+                android:id="@+id/tvAsteroidName"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="@dimen/default_p"
+                android:paddingVertical="@dimen/small_p"
+                android:text="@{bAsteroid.codename}"
+                app:layout_constraintBottom_toTopOf="@+id/tvAsteroidDate"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:text="@string/asteroid_name_placeholder" />
+
+            <TextView
+                android:id="@+id/tvAsteroidDate"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/close_approach_data_title"
+                android:paddingHorizontal="@dimen/default_p"
+                android:paddingVertical="@dimen/small_p"
+                android:text="@{bAsteroid.closeApproachDate}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/ivAsteroidImage"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:text="@string/asteroid_date_placeholder" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+</layout>

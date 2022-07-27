@@ -5,6 +5,7 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.udacity.asteroidradar.db.entities.AsteroidTable
+import com.udacity.asteroidradar.utile.Constants.DATABASE_NAME
 
 @Database(
     entities = [AsteroidTable::class],
@@ -22,7 +23,7 @@ abstract class AsteroidDatabase: RoomDatabase() {
                     INSTANCE = Room.databaseBuilder(
                         context,
                         AsteroidDatabase::class.java,
-                        "asteroid_database.db"
+                        DATABASE_NAME
                     ).build()
                 }
             }

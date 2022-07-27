@@ -21,4 +21,6 @@
     <string name="nasa_picture_of_day_content_description_format">NASA\'s picture of day: %s</string>
     <string name="help_button_with_question_mark_icon">help button with question mark icon</string>
     <string name="place_holder_image_for_asteroid">place holder image for Asteroid</string>
+    <string name="asteroid_name_placeholder">Asteroid Name</string>
+    <string name="asteroid_date_placeholder">Close Approach Data</string>
 </resources>

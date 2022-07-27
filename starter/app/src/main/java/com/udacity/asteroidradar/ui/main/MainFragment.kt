@@ -5,21 +5,21 @@ import android.util.Log
 import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.udacity.asteroidradar.R
 import com.udacity.asteroidradar.databinding.FragmentMainBinding
-import com.udacity.asteroidradar.db.AsteroidDatabase
-import com.udacity.asteroidradar.repository.AsteroidRepository
+import com.udacity.asteroidradar.ui.main.adapter.AsteroidClickListener
+import com.udacity.asteroidradar.ui.main.adapter.AsteroidsRecyclerViewAdapter
 
 
 class MainFragment : Fragment() {
 
-
     private val binding by lazy { FragmentMainBinding.inflate(layoutInflater) }
-
-    private val viewModel by viewModels<MainViewModel>{
-        val database = AsteroidDatabase.getDatabase(requireContext().applicationContext)
-        val repo = AsteroidRepository(database)
-        MainViewModelFactory(repo)
+    private val viewModel by viewModels<MainViewModel>()
+    private val adapter by lazy {
+        AsteroidsRecyclerViewAdapter(AsteroidClickListener { asteroid ->
+            findNavController().navigate(MainFragmentDirections.actionShowDetail(asteroid))
+        })
     }
 
     override fun onCreateView(
@@ -30,9 +30,11 @@ class MainFragment : Fragment() {
         with(binding) {
             lifecycleOwner = this@MainFragment
             bViewModel = viewModel
+            bAdapter = adapter
 
-            viewModel.imageOfTheDay.observe(viewLifecycleOwner) {
+            viewModel.asteroids.observe(viewLifecycleOwner) {
                 Log.d(this::class.simpleName, "onCreateView: $it")
+                adapter.submitList(it)
             }
         }
 

@@ -1,8 +1,7 @@
 package com.udacity.asteroidradar.utile
 
 import com.udacity.asteroidradar.domain.Asteroid
-import com.udacity.asteroidradar.Constants
-import com.udacity.asteroidradar.Constants.API_QUERY_DATE_FORMAT
+import com.udacity.asteroidradar.utile.Constants.API_QUERY_DATE_FORMAT
 import org.json.JSONObject
 import java.text.SimpleDateFormat
 import java.util.*
