@@ -5,13 +5,17 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.udacity.asteroidradar.db.entities.AsteroidTable
+import com.udacity.asteroidradar.db.entities.ImageOfDayTable
 import com.udacity.asteroidradar.utile.Constants.DATABASE_NAME
 
 @Database(
-    entities = [AsteroidTable::class],
+    entities = [
+        AsteroidTable::class,
+        ImageOfDayTable::class
+    ],
     version = 1
 )
-abstract class AsteroidDatabase: RoomDatabase() {
+abstract class AsteroidDatabase : RoomDatabase() {
     abstract val asteroidDao: AsteroidDao
 
     companion object {

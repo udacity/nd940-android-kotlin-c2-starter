@@ -23,7 +23,8 @@
         android:checkable="true"
         android:clickable="true"
         android:focusable="true"
-        android:onClick="@{() -> bClickListener.onClick(bAsteroid)}">
+        android:onClick="@{() -> bClickListener.onClick(bAsteroid)}"
+        app:cardCornerRadius="@dimen/default_radius">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -34,38 +35,54 @@
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:scaleType="centerCrop"
+                tools:src="@drawable/asteroid_safe"
+                app:asteroidStatusImage="@{bAsteroid.potentiallyHazardous}"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintDimensionRatio="16:9"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:statusIcon="@{bAsteroid.potentiallyHazardous}" />
+                app:layout_constraintTop_toTopOf="parent" />
             <!--tools:src="@drawable/asteroid_hazardous"-->
 
-            <TextView
-                android:id="@+id/tvAsteroidName"
-                android:layout_width="0dp"
+            <ImageView
+                android:id="@+id/ivPotentiallyHazardous"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingHorizontal="@dimen/default_p"
-                android:paddingVertical="@dimen/small_p"
-                android:text="@{bAsteroid.codename}"
-                app:layout_constraintBottom_toTopOf="@+id/tvAsteroidDate"
+                android:layout_margin="@dimen/default_m"
+                android:scaleType="centerCrop"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                tools:text="@string/asteroid_name_placeholder" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:statusIcon="@{bAsteroid.potentiallyHazardous}" />
 
-            <TextView
-                android:id="@+id/tvAsteroidDate"
-                android:layout_width="0dp"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:contentDescription="@string/close_approach_data_title"
-                android:paddingHorizontal="@dimen/default_p"
-                android:paddingVertical="@dimen/small_p"
-                android:text="@{bAsteroid.closeApproachDate}"
+                android:background="@drawable/item_asteroid_bg"
+                android:orientation="vertical"
+                android:padding="@dimen/default_p"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@+id/ivAsteroidImage"
-                app:layout_constraintStart_toStartOf="parent"
-                tools:text="@string/asteroid_date_placeholder" />
+                app:layout_constraintStart_toStartOf="parent">
+
+                <TextView
+                    android:id="@+id/tvAsteroidName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@{bAsteroid.codename}"
+                    android:textColor="@color/md_theme_onPrimary"
+                    tools:text="@string/asteroid_name_placeholder" />
+
+                <TextView
+                    android:id="@+id/tvAsteroidDate"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@string/close_approach_data_title"
+                    android:text="@{bAsteroid.closeApproachDate}"
+                    android:textColor="@color/md_theme_onPrimary"
+                    tools:text="@string/asteroid_date_placeholder" />
+
+            </LinearLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

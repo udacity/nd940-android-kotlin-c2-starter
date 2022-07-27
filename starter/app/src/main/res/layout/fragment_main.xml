@@ -21,11 +21,11 @@
 
         <ImageView
             android:id="@+id/ivPictureOfDay"
+            setImageWithUrl="@{bViewModel.imageOfTheDay.url}"
             android:layout_width="match_parent"
             android:layout_height="200dp"
             android:adjustViewBounds="true"
             android:scaleType="centerCrop"
-            imageOfTheDay="@{bViewModel.imageOfTheDay.url}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
@@ -38,7 +38,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
             android:background="@color/md_theme_primaryContainer"
-            android:padding="16dp"
+            android:padding="@dimen/default_p"
             android:text="@{bViewModel.imageOfTheDay.title}"
             android:textColor="@color/md_theme_onPrimaryContainer"
             android:textSize="20sp"
@@ -53,14 +53,16 @@
             android:id="@+id/rvAsteroid"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            tools:itemCount="3"
             android:adapter="@{bAdapter}"
-            tools:listitem="@layout/item_asteroid"
+            android:clipToPadding="false"
+            android:paddingBottom="@dimen/small_p"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvPictureOfDay" />
+            app:layout_constraintTop_toBottomOf="@+id/tvPictureOfDay"
+            tools:itemCount="3"
+            tools:listitem="@layout/item_asteroid" />
 
         <ProgressBar
             android:id="@+id/status_loading_wheel"

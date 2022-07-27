@@ -72,32 +72,4 @@ data class RelativeVelocity(
     val kilometers_per_second: String,
 )
 
-fun NeoFeedResponse.asDomainModel(): List<Asteroid> {
-    return nearEarthObjects.nearEarthObject.map {
-        Asteroid(
-            id = it.id,
-            codename = it.name,
-            closeApproachDate = it.closeApproachData.first().closeApproachDate,
-            absoluteMagnitude = it.absoluteMagnitude,
-            estimatedDiameter = it.estimatedDiameter.kilometers.estimated_diameter_max,
-            relativeVelocity = it.closeApproachData.first().relativeVelocity.kilometers_per_second.toDouble(),
-            distanceFromEarth = it.closeApproachData.first().missDistance.astronomical.length.toDouble(),
-            isPotentiallyHazardous = it.isPotentiallyHazardousAsteroid)
-    }
-}
-
-fun NeoFeedResponse.asDatabaseModel(): Array<AsteroidTable> {
-    return nearEarthObjects.nearEarthObject.map {
-        AsteroidTable(
-            id = it.id,
-            codename = it.name,
-            closeApproachDate = it.closeApproachData.first().closeApproachDate,
-            absoluteMagnitude = it.absoluteMagnitude,
-            estimatedDiameter = it.estimatedDiameter.kilometers.estimated_diameter_max,
-            relativeVelocity = it.closeApproachData.first().relativeVelocity.kilometers_per_second.toDouble(),
-            distanceFromEarth = it.closeApproachData.first().missDistance.astronomical.length.toDouble(),
-            isPotentiallyHazardous = it.isPotentiallyHazardousAsteroid)
-    }.toTypedArray()
-}
-
 

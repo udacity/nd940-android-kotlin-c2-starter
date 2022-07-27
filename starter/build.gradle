@@ -24,6 +24,7 @@ buildscript {
         coroutines_version = '1.6.4'
 
         worker_version = "2.7.1"
+        timber_version = '5.0.1'
     }
 
     repositories {

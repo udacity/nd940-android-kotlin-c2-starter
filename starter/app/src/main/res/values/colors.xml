@@ -30,4 +30,5 @@
     <color name="md_theme_onPrimary">#FFFFFF</color>
     <color name="md_theme_primaryContainer">#EADDFF</color>
     <color name="md_theme_primary">#6750A4</color>
+    <color name="md_theme_primary_70">#B36750A4</color>
 </resources>

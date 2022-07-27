@@ -16,24 +16,18 @@ class MainViewModel(private val app:Application) : AndroidViewModel(app) {
 
     // cashed
     private val _imageOfTheDay = MutableLiveData<ImageOfDayResponse>()
-    private val _asteroids = MutableLiveData<List<Asteroid>>()
 
     // public
     val imageOfTheDay: LiveData<ImageOfDayResponse> get() = _imageOfTheDay
-//    val asteroids: LiveData<List<Asteroid>> get() = repo.asteroids
-    val asteroids: LiveData<List<Asteroid>> get() = _asteroids
+    val asteroids: LiveData<List<Asteroid>> get() = repo.asteroids
 
     init {
-        refreshAsteroids()
         getImageOfTheDay()
+        repo.refreshAsteroids()
     }
 
     private fun getImageOfTheDay() = viewModelScope.launch {
         _imageOfTheDay.value = repo.getImageOfTheDay()
-    }
-
-    private fun refreshAsteroids() = viewModelScope.launch {
-        _asteroids.value = repo.refreshAsteroids()
     }
 
 }

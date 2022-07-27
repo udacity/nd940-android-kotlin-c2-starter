@@ -16,10 +16,11 @@ class MainFragment : Fragment() {
 
     private val binding by lazy { FragmentMainBinding.inflate(layoutInflater) }
     private val viewModel by viewModels<MainViewModel>()
+
     private val adapter by lazy {
-        AsteroidsRecyclerViewAdapter(AsteroidClickListener { asteroid ->
-            findNavController().navigate(MainFragmentDirections.actionShowDetail(asteroid))
-        })
+        val adapterClickListener by lazy { AsteroidClickListener { asteroid ->
+                findNavController().navigate(MainFragmentDirections.actionShowDetail(asteroid)) } }
+        AsteroidsRecyclerViewAdapter(adapterClickListener)
     }
 
     override fun onCreateView(

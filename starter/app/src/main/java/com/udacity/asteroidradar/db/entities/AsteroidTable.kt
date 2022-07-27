@@ -11,7 +11,7 @@ data class AsteroidTable(
     @PrimaryKey
     val id: Long,
     val codename: String,
-    val closeApproachDate: String,
+    val closeApproachDate: String, // TODO : change this to be a date from SQL Date
     val absoluteMagnitude: Double,
     val estimatedDiameter: Double,
     val relativeVelocity: Double,

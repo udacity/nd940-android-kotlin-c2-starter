@@ -29,4 +29,5 @@
     <color name="md_theme_onPrimary">#381E72</color>
     <color name="md_theme_primaryContainer">#4F378B</color>
     <color name="md_theme_primary">#D0BCFF</color>
+    <color name="md_theme_primary_70">#B3D0BCFF</color>
 </resources>

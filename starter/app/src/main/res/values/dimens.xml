@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="default_m">16dp</dimen>
+    <dimen name="small_m">8dp</dimen>
+
     <dimen name="default_p">16dp</dimen>
     <dimen name="small_p">8dp</dimen>
+
+    <dimen name="default_radius">16dp</dimen>
+    <dimen name="small_radius">8dp</dimen>
 </resources>

@@ -6,9 +6,8 @@ import com.udacity.asteroidradar.domain.Asteroid
 import com.udacity.asteroidradar.ui.main.adapter.AsteroidsViewHolder.Companion.from
 
 class AsteroidsRecyclerViewAdapter(
-    val asteroidClickListener: AsteroidClickListener
-) :
-    ListAdapter<Asteroid, AsteroidsViewHolder>(AsteroidComparator) {
+    private val asteroidClickListener: AsteroidClickListener
+) : ListAdapter<Asteroid, AsteroidsViewHolder>(AsteroidComparator) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = from(parent)
 
