@@ -1,17 +1,19 @@
 apply plugin: 'com.android.application'
-
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
-apply plugin: 'androidx.navigation.safeargs'
+apply plugin: 'dagger.hilt.android.plugin'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'androidx.navigation.safeargs.kotlin'
+
+
 
 android {
-    compileSdkVersion 30
+    compileSdkVersion 32
     buildToolsVersion "29.0.3"
     defaultConfig {
         applicationId "com.udacity.asteroidradar"
         minSdkVersion 21
-        targetSdkVersion 30
+        targetSdkVersion 32
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -45,8 +47,17 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.2.0"
     implementation 'androidx.fragment:fragment-ktx:1.2.5'
 
+  //  def nav_version = "2.5.1"
+
+    implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
+    implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
+
+
+/*
+
     implementation "android.arch.navigation:navigation-fragment-ktx:1.0.0"
     implementation "android.arch.navigation:navigation-ui-ktx:1.0.0"
+*/
 
     implementation "com.squareup.moshi:moshi:1.8.0"
     implementation "com.squareup.moshi:moshi-kotlin:1.8.0"
@@ -72,4 +83,21 @@ dependencies {
     testImplementation 'junit:junit:4.13'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+
+    // DI
+    implementation "com.google.dagger:hilt-android:$hilt_version"
+    kapt "com.google.dagger:hilt-android-compiler:$hilt_version"
+
+    androidTestImplementation "com.google.dagger:hilt-android-testing:$hilt_version"
+    kaptAndroidTest "com.google.dagger:hilt-android-compiler:$hilt_version"
+
+    //okhttp
+    implementation "com.squareup.okhttp3:okhttp:$okHttp_version"
+    implementation "com.squareup.okhttp3:logging-interceptor:$okHttp_version"
+
+
+
+    //Logger
+    implementation "com.jakewharton.timber:timber:4.7.1"
+
 }

@@ -1,4 +1,4 @@
-package com.udacity.asteroidradar.main
+package com.udacity.asteroidradar.presentation.main
 
 import androidx.lifecycle.ViewModel
 
