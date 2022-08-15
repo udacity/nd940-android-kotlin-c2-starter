@@ -41,7 +41,7 @@ class App : Application() {
             .setRequiredNetworkType(NetworkType.UNMETERED)
             .setRequiresBatteryNotLow(true)
             .apply {
-               // setRequiresDeviceIdle(true)
+               setRequiresDeviceIdle(true)
             }.build()
 
         val repeatingRequest = PeriodicWorkRequestBuilder<GetAsteroidsWork>(1, TimeUnit.DAYS)

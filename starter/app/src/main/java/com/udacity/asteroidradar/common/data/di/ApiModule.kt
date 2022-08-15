@@ -36,7 +36,6 @@ object ApiModule {
             .baseUrl(ApiConstants.BASE_ENDPOINT)
             .client(okHttpClient)
             .addConverterFactory(ScalarsConverterFactory.create())
-            .addConverterFactory(GsonConverterFactory.create())
             .addConverterFactory(MoshiConverterFactory.create(moshi))
 
     }
