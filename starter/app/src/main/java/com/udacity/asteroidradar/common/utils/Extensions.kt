@@ -21,10 +21,14 @@ inline fun CoroutineScope.createExceptionHandler(
 
 
 fun ImageView.setImage(url: String) {
-    Picasso.with(this.context)
-        .load(url)
-        .error(R.drawable.placeholder_picture_of_day)
-        .centerCrop()
-        .into(this)
 
+    if (url.isNotEmpty()) {
+
+        Picasso.with(this.context)
+            .load(url)
+            .error(R.drawable.placeholder_picture_of_day)
+            .centerCrop()
+            .into(this)
+
+    }
 }

@@ -1,5 +1,7 @@
 package com.udacity.asteroidradar.common.data.di
 
+import com.squareup.moshi.Moshi
+import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import com.udacity.asteroidradar.common.data.api.Api
 import com.udacity.asteroidradar.common.data.api.ApiConstants
 import com.udacity.asteroidradar.common.data.api.interceptors.LoggingInterceptor
@@ -11,7 +13,9 @@ import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.converter.moshi.MoshiConverterFactory
+import retrofit2.converter.scalars.ScalarsConverterFactory
 import javax.inject.Singleton
 
 @Module
@@ -27,12 +31,21 @@ object ApiModule {
     }
 
     @Provides
-    fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit.Builder {
+    fun provideRetrofit(okHttpClient: OkHttpClient , moshi : Moshi ): Retrofit.Builder {
         return Retrofit.Builder()
             .baseUrl(ApiConstants.BASE_ENDPOINT)
             .client(okHttpClient)
-            .addConverterFactory(MoshiConverterFactory.create())
+            .addConverterFactory(ScalarsConverterFactory.create())
+            .addConverterFactory(GsonConverterFactory.create())
+            .addConverterFactory(MoshiConverterFactory.create(moshi))
+
     }
+
+    @Singleton
+    @Provides
+    fun provideMoshi() : Moshi = Moshi.Builder()
+        .add(KotlinJsonAdapterFactory())
+        .build()
 
     @Provides
     fun provideOkHttpClient(

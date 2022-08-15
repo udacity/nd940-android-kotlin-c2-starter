@@ -13,7 +13,7 @@ interface Api {
         @Query(ApiParameters.API_KEY) apiKey :String = Constants.APIKEY,
         @Query(ApiParameters.START_DATE) startDate : String,
         @Query(ApiParameters.END_DATE) endDate : String
-    ) : JSONObject
+    ) : String
 
     @GET(ApiConstants.PLANETARY_ENDPOINT)
     suspend fun fetchPictureOfDay(

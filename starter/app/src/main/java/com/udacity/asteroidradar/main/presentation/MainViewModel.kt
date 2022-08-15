@@ -11,6 +11,7 @@ import com.udacity.asteroidradar.common.presentation.model.Event
 import com.udacity.asteroidradar.common.utils.createExceptionHandler
 import com.udacity.asteroidradar.main.domain.usecases.GetAsteroidsUseCase
 import com.udacity.asteroidradar.main.domain.usecases.GetPictureOfDayUseCase
+import com.udacity.asteroidradar.main.domain.usecases.RequestAsteroidUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -18,7 +19,8 @@ import javax.inject.Inject
 @HiltViewModel
 class MainViewModel @Inject constructor(
     private val getsAsteroidsUseCase: GetAsteroidsUseCase,
-    private val getPictureOfDayUseCase: GetPictureOfDayUseCase
+    private val getPictureOfDayUseCase: GetPictureOfDayUseCase,
+    private val requestAsteroidUseCase: RequestAsteroidUseCase
 ) : ViewModel() {
 
 
@@ -27,8 +29,9 @@ class MainViewModel @Inject constructor(
 
     init {
         _state.value = MainViewState()
-       // onGetLocalAsteroids()
-        //onRequestPictureOfDay()
+      //  onRequestAsteroid()
+        onGetLocalAsteroids()
+        onRequestPictureOfDay()
     }
 
     private fun onRequestPictureOfDay() {
@@ -70,6 +73,18 @@ class MainViewModel @Inject constructor(
                 )
             }
 
+        }
+
+    }
+
+    private fun onRequestAsteroid() {
+        _state.value = state.value!!.copy(loading = true)
+
+        val errorMessage = "Failed to fetch Asteroid from remote data source "
+        val exceptionHandler = viewModelScope.createExceptionHandler(errorMessage) { onFailure(it) }
+        viewModelScope.launch(exceptionHandler) {
+
+            requestAsteroidUseCase()
         }
 
     }
