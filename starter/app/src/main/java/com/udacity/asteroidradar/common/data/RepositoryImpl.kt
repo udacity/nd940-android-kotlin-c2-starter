@@ -1,6 +1,5 @@
 package com.udacity.asteroidradar.common.data
 
-import android.database.DatabaseUtils
 import com.udacity.asteroidradar.common.data.api.Api
 import com.udacity.asteroidradar.common.data.api.model.ApiPictureOfDay
 import com.udacity.asteroidradar.common.data.api.parseAsteroidsJsonResult

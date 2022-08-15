@@ -12,6 +12,8 @@ class RequestAsteroidUseCase@Inject constructor(private val  repository: Reposit
             .requestAsteroid()
             .map { CachedAsteroid.fromDomain(it) }
 
+        repository.deletePreviousDayAsteroidData()
+
         repository.storeAsteroids(asteroids)
     }
 

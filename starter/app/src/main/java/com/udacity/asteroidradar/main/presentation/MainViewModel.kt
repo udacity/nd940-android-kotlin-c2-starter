@@ -86,7 +86,6 @@ class MainViewModel @Inject constructor(
 
             requestAsteroidUseCase()
         }
-
     }
 
     private fun onFailure(failure: Throwable) {
