@@ -1,4 +1,4 @@
-package com.udacity.asteroidradar
+package com.udacity.asteroidradar.main
 
 import com.udacity.asteroidradar.api.NeoWsService
 
@@ -8,7 +8,13 @@ class MainRepository {
 
     suspend fun fetchLatest() {
         println("*** fetchLatest")
-        val list = neoWsService.fetchLast()
-        println("*** list $list")
+        try {
+            val list = neoWsService.fetchLast()
+            println("*** list $list")
+        }
+        catch (e : Exception) {
+            e.printStackTrace()
+        }
+
     }
 }
