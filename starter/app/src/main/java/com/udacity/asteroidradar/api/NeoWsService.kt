@@ -6,6 +6,9 @@ import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import com.udacity.asteroidradar.Constants.BASE_URL
 import com.udacity.asteroidradar.PictureOfDay
+import java.util.concurrent.TimeUnit
+import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
@@ -16,28 +19,35 @@ class NeoWsService {
 
     val API_KEY = ""
 
+    private val interceptor = HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
+
     private val moshi = Moshi.Builder()
         .add(KotlinJsonAdapterFactory())
         .build()
+
+    private val okHttp = OkHttpClient.Builder()
+        .callTimeout(10, TimeUnit.SECONDS)
+        .connectTimeout(10, TimeUnit.SECONDS)
+        .addNetworkInterceptor(interceptor)
+        .build()
+
     private val moshiRetrofit = Retrofit.Builder()
         //.addCallAdapterFactory(RxJava3CallAdapterFactory.create())
         .addConverterFactory(MoshiConverterFactory.create(moshi))
         .baseUrl(BASE_URL)
+        .client(okHttp)
         .build()
 
     private val neoWsApi : NeoWsApi by lazy {
         moshiRetrofit.create(NeoWsApi::class.java)
     }
 
-    suspend fun fetchLast() { //}: LiveData<PictureOfDay> {
-        try {
-            val foo = neoWsApi.fetchPictureOfDay(API_KEY)
+    suspend fun fetchPictureOfDay() : PictureOfDay? {
+        neoWsApi.fetchPictureOfDay(API_KEY).apply {
+            return if (isSuccessful) {
+                body()
+            } else { null }
         }
-        catch (e: Exception) {
-            e.printStackTrace()
-        }
-        //foo.i
-        //return neoWsApi.fetchPictureOfDay(API_KEY)
     }
 
     interface NeoWsApi {
@@ -48,6 +58,6 @@ class NeoWsService {
         @GET("/planetary/apod")
         suspend fun fetchPictureOfDay(
             @Query("api_key") apiKey : String
-        ): PictureOfDay
+        ): Response<PictureOfDay>
     }
 }
