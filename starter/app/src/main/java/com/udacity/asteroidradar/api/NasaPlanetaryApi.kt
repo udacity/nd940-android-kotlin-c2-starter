@@ -1,6 +1,8 @@
 package com.udacity.asteroidradar.api
 
 import com.squareup.moshi.Moshi
+import com.udacity.asteroidradar.Asteroid
+import retrofit2.Call
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
@@ -23,7 +25,11 @@ private val retrofit = Retrofit.Builder()
     .build()
 
 interface NasaPlanetaryApi {
-    @GET(API_DIR)
-    suspend fun getAsteroidList() : Response<String>
+    @GET("neo/rest/v1/feed")
+    suspend fun getAsteroidList() : String
+
+    object NasaApi {
+        val retrofitService : NasaPlanetaryApi by lazy { retrofit.create(NasaPlanetaryApi::class.java) }
+    }
 
 }
