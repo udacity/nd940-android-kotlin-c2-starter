@@ -8,6 +8,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.converter.scalars.ScalarsConverterFactory
 import retrofit2.http.GET
+import retrofit2.http.Query
 
 
 private const val BASE_URL = "https://api.nasa.gov/"
@@ -26,7 +27,14 @@ private val retrofit = Retrofit.Builder()
 
 interface NasaPlanetaryApi {
     @GET("neo/rest/v1/feed")
-    suspend fun getAsteroidList() : String
+    fun getAsteroidList(
+        @Query("api_key") apiKey: String
+    ) : Call<String>
+
+    @GET("planetary/apod")
+    fun getPictureOfDay(
+        @Query("api_key") apiKey: String
+    ): Call<String>
 
     object NasaApi {
         val retrofitService : NasaPlanetaryApi by lazy { retrofit.create(NasaPlanetaryApi::class.java) }
