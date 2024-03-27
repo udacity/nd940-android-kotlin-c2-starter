@@ -1,12 +1,13 @@
 package com.udacity.asteroidradar.main
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.udacity.asteroidradar.Asteroid
 import com.udacity.asteroidradar.R
 
-class AsteroidAdapter: RecyclerView.Adapter<AsteroidItemViewHolder>() {
+class AsteroidAdapter: RecyclerView.Adapter<AsteroidAdapter.AsteroidItemViewHolder>() {
     var data = listOf<Asteroid>()
         set(value) {
             field = value
@@ -21,7 +22,7 @@ class AsteroidAdapter: RecyclerView.Adapter<AsteroidItemViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AsteroidItemViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
-        val view = layoutInflater.inflate()
+        return AsteroidItemViewHolder.from(parent)
     }
 
     class AsteroidItemViewHolder(view: View): RecyclerView.ViewHolder(view) {

@@ -2,6 +2,8 @@ package com.udacity.asteroidradar.api
 
 import com.squareup.moshi.Moshi
 import com.udacity.asteroidradar.Asteroid
+import com.udacity.asteroidradar.Constants.BASE_URL
+import kotlinx.coroutines.Deferred
 import retrofit2.Call
 import retrofit2.Response
 import retrofit2.Retrofit
@@ -11,9 +13,8 @@ import retrofit2.http.GET
 import retrofit2.http.Query
 
 
-private const val BASE_URL = "https://api.nasa.gov/"
+
 private const val API_DIR = "neo/rest/v1/feed"
-private const val API_KEY = "Ly5IjJrVSY1TfymLtTdOQhQ7D6sNB6Qpv13NYXGU";
 
 private val moshi = Moshi.Builder()
     .add(com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory())
@@ -27,9 +28,9 @@ private val retrofit = Retrofit.Builder()
 
 interface NasaPlanetaryApi {
     @GET("neo/rest/v1/feed")
-    fun getAsteroidList(
+    suspend fun getAsteroidList(
         @Query("api_key") apiKey: String
-    ) : Call<String>
+    ) : String
 
     @GET("planetary/apod")
     fun getPictureOfDay(
