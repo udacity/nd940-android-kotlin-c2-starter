@@ -28,6 +28,7 @@ class MainFragment : Fragment() {
             findNavController().navigate(MainFragmentDirections.actionShowDetail(it))
         })
         binding.asteroidRecycler.adapter = adapter
+        binding.activityMainImageOfTheDay
 
         viewModel.asteroidList.observe(viewLifecycleOwner, Observer {
             it?.let {

@@ -2,7 +2,10 @@ package com.udacity.asteroidradar.api
 
 import com.squareup.moshi.Moshi
 import com.udacity.asteroidradar.Asteroid
+import com.udacity.asteroidradar.Constants.API_KEY
 import com.udacity.asteroidradar.Constants.BASE_URL
+import com.udacity.asteroidradar.PictureOfDay
+import com.udacity.asteroidradar.api.NasaPlanetaryApi.NasaApi.retrofitService
 import kotlinx.coroutines.Deferred
 import retrofit2.Call
 import retrofit2.Response
@@ -33,12 +36,13 @@ interface NasaPlanetaryApi {
     ) : String
 
     @GET("planetary/apod")
-    fun getPictureOfDay(
+    suspend fun getPictureOfDay(
         @Query("api_key") apiKey: String
-    ): Call<String>
+    ): PictureOfDay
 
     object NasaApi {
         val retrofitService : NasaPlanetaryApi by lazy { retrofit.create(NasaPlanetaryApi::class.java) }
     }
 
 }
+suspend fun getPictureOfTheDay() = retrofitService.getPictureOfDay(API_KEY)

@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.map
 import com.udacity.asteroidradar.Asteroid
 import com.udacity.asteroidradar.Constants
+import com.udacity.asteroidradar.PictureOfDay
 import com.udacity.asteroidradar.api.NasaPlanetaryApi
 import com.udacity.asteroidradar.api.parseAsteroidsJsonResult
 import com.udacity.asteroidradar.database.AsteroidDatabase
@@ -26,5 +27,13 @@ class AsteroidRepository(private val database: AsteroidDatabase) {
             val asteroidList = parseAsteroidsJsonResult(JSONObject(resultString))
             database.asteroidDao.insertAll(asteroidList.asDatabaseModel())
         }
+    }
+
+    suspend fun getPictureOfDay(): PictureOfDay{
+        var pictureOfDay: PictureOfDay
+        withContext(Dispatchers.IO) {
+            pictureOfDay = NasaPlanetaryApi.NasaApi.retrofitService.getPictureOfDay(Constants.API_KEY)
+        }
+        return pictureOfDay
     }
 }
