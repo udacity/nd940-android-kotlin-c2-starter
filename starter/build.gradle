@@ -31,3 +31,7 @@ buildscript {
         // in the individual module build.gradle files
     }
 }
+
+plugins {
+    id 'com.google.devtools.ksp' version '1.8.0-1.0.8' apply false
+}
