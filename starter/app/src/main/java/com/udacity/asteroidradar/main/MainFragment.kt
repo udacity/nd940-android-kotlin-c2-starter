@@ -6,15 +6,8 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import com.udacity.asteroidradar.Constants.API_KEY
-import com.udacity.asteroidradar.Constants.BASE_URL
 import com.udacity.asteroidradar.R
-import com.udacity.asteroidradar.api.NasaPlanetaryApi
-import com.udacity.asteroidradar.api.parseAsteroidsJsonResult
 import com.udacity.asteroidradar.databinding.FragmentMainBinding
-import retrofit2.Call
-import retrofit2.Response
-import javax.security.auth.callback.Callback
 
 class MainFragment : Fragment() {
 

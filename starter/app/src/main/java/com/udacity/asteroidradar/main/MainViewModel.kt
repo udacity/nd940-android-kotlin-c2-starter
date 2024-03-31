@@ -2,19 +2,10 @@ package com.udacity.asteroidradar.main
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.udacity.asteroidradar.Asteroid
-import com.udacity.asteroidradar.Constants
-import com.udacity.asteroidradar.api.NasaPlanetaryApi
-import com.udacity.asteroidradar.api.parseAsteroidsJsonResult
 import com.udacity.asteroidradar.database.getDatabase
 import com.udacity.asteroidradar.repository.AsteroidRepository
 import kotlinx.coroutines.launch
-import org.json.JSONObject
-import retrofit2.Call
-import retrofit2.Response
 import java.lang.Exception
 
 class MainViewModel(application: Application) : AndroidViewModel(application) {
@@ -36,6 +27,5 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
                 println(e)
             }
         }
-
     }
 }
