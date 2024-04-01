@@ -1,14 +1,10 @@
 package com.udacity.asteroidradar.api
 
 import com.squareup.moshi.Moshi
-import com.udacity.asteroidradar.Asteroid
 import com.udacity.asteroidradar.Constants.API_KEY
 import com.udacity.asteroidradar.Constants.BASE_URL
-import com.udacity.asteroidradar.PictureOfDay
+import com.udacity.asteroidradar.model.PictureOfDay
 import com.udacity.asteroidradar.api.NasaPlanetaryApi.NasaApi.retrofitService
-import kotlinx.coroutines.Deferred
-import retrofit2.Call
-import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.converter.scalars.ScalarsConverterFactory

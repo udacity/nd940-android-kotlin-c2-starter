@@ -1,7 +1,6 @@
 package com.udacity.asteroidradar.work
 
 import android.content.Context
-import android.content.ContextParams
 import androidx.work.CoroutineWorker
 import androidx.work.WorkerParameters
 import com.udacity.asteroidradar.database.getDatabase
@@ -19,9 +18,9 @@ class RefreshDataWorker(appContext: Context, params: WorkerParameters): Coroutin
 
         return try {
             repository.refreshAsteroids()
-            return Result.success()
+            Result.success()
         } catch (e: HttpException) {
-            return Result.failure()
+            Result.failure()
         }
     }
 }
